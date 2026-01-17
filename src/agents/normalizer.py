@@ -9,10 +9,8 @@ from typing import Optional
 from dataclasses import dataclass, asdict
 
 from groq import Groq
-import google.generativeai as genai
-from PIL import Image
 
-from ..config import GROQ_API_KEY, GEMINI_API_KEY, GROQ_MODEL
+from ..config import GROQ_API_KEY, GROQ_MODEL
 from ..validation import sanitize_claim_text, escape_html_content
 
 
@@ -36,11 +34,6 @@ class ClaimNormalizer:
     
     def __init__(self):
         self.groq_client = Groq(api_key=GROQ_API_KEY)
-        if GEMINI_API_KEY:
-            genai.configure(api_key=GEMINI_API_KEY)
-            self.gemini_model = genai.GenerativeModel('gemini-1.5-flash')
-        else:
-            self.gemini_model = None
     
     def normalize_text(self, raw_text: str) -> NormalizedClaim:
         """
@@ -114,57 +107,21 @@ Rules:
     
     def extract_from_image(self, image_path: str) -> NormalizedClaim:
         """
-        Extract claims from an image using Gemini Vision.
+        Image processing not supported (Gemini removed).
         
         Args:
             image_path: Path to the image file
             
         Returns:
-            NormalizedClaim with extracted text and description
+            NormalizedClaim with error message
         """
-        if not self.gemini_model:
-            raise ValueError("Gemini API key not configured for image processing")
-        
-        try:
-            image = Image.open(image_path)
-            
-            prompt = """Analyze this image for potential misinformation claims.
-
-Extract:
-1. All text visible in the image (OCR)
-2. The main claim or assertion being made
-3. Visual context that might be misleading
-
-Return ONLY valid JSON:
-{"ocr_text": "all visible text", "main_claim": "the primary factual assertion", "visual_context": "description of visual elements", "entities": ["list", "of", "entities"]}"""
-
-            response = self.gemini_model.generate_content([prompt, image])
-            result_text = response.text.strip()
-            
-            # Clean up markdown
-            result_text = re.sub(r'^```json\s*', '', result_text)
-            result_text = re.sub(r'\s*```$', '', result_text)
-            
-            result = json.loads(result_text)
-            
-            return NormalizedClaim(
-                original_text=result.get("ocr_text", ""),
-                normalized_text=result.get("main_claim", ""),
-                entities=result.get("entities", []),
-                temporal_markers=None,
-                source_type="image",
-                image_description=result.get("visual_context")
-            )
-            
-        except Exception as e:
-            print(f"Image extraction error: {e}")
-            return NormalizedClaim(
-                original_text="",
-                normalized_text="",
-                entities=[],
-                source_type="image",
-                image_description=f"Error processing image: {str(e)}"
-            )
+        return NormalizedClaim(
+            original_text="",
+            normalized_text="",
+            entities=[],
+            source_type="image",
+            image_description="Image processing not supported (Gemini API removed)"
+        )
     
     def process(self, text: Optional[str] = None, image_path: Optional[str] = None) -> NormalizedClaim:
         """

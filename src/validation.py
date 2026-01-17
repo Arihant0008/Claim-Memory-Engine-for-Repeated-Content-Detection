@@ -141,8 +141,8 @@ def validate_image_upload(file_data: bytes, filename: str) -> bool:
 
 def escape_html_content(text: str) -> str:
     """
-    Escape HTML content to prevent XSS in Streamlit.
-    Use this for any user-provided content displayed with unsafe_allow_html=True.
+    Escape HTML content to prevent XSS attacks.
+    Use this for any user-provided content displayed in web interfaces.
     
     Args:
         text: Text that may contain HTML

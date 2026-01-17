@@ -83,12 +83,6 @@ def cmd_clear(args):
         print("❌ Failed to clear collection.")
 
 
-def cmd_run(args):
-    """Run the Streamlit app."""
-    import subprocess
-    subprocess.run(["streamlit", "run", "app.py"])
-
-
 def main():
     parser = argparse.ArgumentParser(
         description="Persistent Claim Memory - Misinformation Detection CLI",
@@ -98,7 +92,6 @@ Examples:
   python cli.py ingest                  # Load claims into database
   python cli.py verify "claim text"     # Verify a claim
   python cli.py stats                   # Show collection stats
-  python cli.py run                     # Start Streamlit UI
         """
     )
     
@@ -138,9 +131,6 @@ Examples:
         help="Skip confirmation"
     )
     
-    # Run command
-    run_parser = subparsers.add_parser("run", help="Start Streamlit UI")
-    
     args = parser.parse_args()
     
     if args.command is None:
@@ -152,8 +142,7 @@ Examples:
         "ingest": cmd_ingest,
         "verify": cmd_verify,
         "stats": cmd_stats,
-        "clear": cmd_clear,
-        "run": cmd_run
+        "clear": cmd_clear
     }
     
     # Handle curated-only flag

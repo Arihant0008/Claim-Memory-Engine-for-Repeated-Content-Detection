@@ -10,19 +10,14 @@ langchain-core>=0.1.0
 
 # LLM APIs
 groq>=0.4.0
-google-generativeai>=0.3.0
+# google-generativeai removed (image processing disabled)
 
 # Embeddings and ML
 transformers>=4.36.0
 torch>=2.1.0
 sentence-transformers>=2.2.0
 
-# Image processing
-Pillow>=10.1.0
-clip-interrogator>=0.6.0
-
-# Web framework
-streamlit>=1.29.0
+# Web framework (FastAPI only, Streamlit removed)
 fastapi>=0.108.0
 uvicorn>=0.25.0
 

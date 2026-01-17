@@ -28,8 +28,7 @@ COLLECTION_NAME = "claims_memory"
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_MODEL = "llama-3.1-8b-instant"
 
-# Gemini Configuration (for vision)
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+# Gemini removed - image processing disabled
 
 # Tavily Configuration (for web search)
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
