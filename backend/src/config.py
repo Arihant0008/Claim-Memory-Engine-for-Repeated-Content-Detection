@@ -54,9 +54,9 @@ SIMILARITY_THRESHOLD = 0.90
 CACHE_HIT_THRESHOLD = 0.85
 
 # Cache freshness: Even high-similarity matches are refreshed via web search if
-# older than this. Balances data freshness vs API cost.
-# Future: Implement category-based TTL (timeless facts: 30d, current events: 1d)
-CACHE_MAX_AGE_DAYS = 3
+# older than this. Increased to 30 days for established facts (vaccines, science).
+# For current events, use lower TTL in future (category-based caching).
+CACHE_MAX_AGE_DAYS = 30
 
 # Number of similar claims to retrieve for reasoning context
 DEFAULT_TOP_K = 10

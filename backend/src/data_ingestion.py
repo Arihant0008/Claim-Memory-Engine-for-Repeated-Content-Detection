@@ -33,8 +33,8 @@ LIAR_LABEL_MAP = {
 }
 
 
-def generate_random_timestamp(days_back: int = 365) -> str:
-    """Generate a random timestamp within the last N days."""
+def generate_random_timestamp(days_back: int = 7) -> str:
+    """Generate a random timestamp within the last N days (default: 7 for fresh cache)."""
     random_days = random.randint(0, days_back)
     date = datetime.now() - timedelta(days=random_days)
     return date.isoformat()
