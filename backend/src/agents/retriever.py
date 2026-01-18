@@ -207,7 +207,7 @@ class RetrievalAgent:
         try:
             results = self.client.search(
                 collection_name=COLLECTION_NAME,
-                query_vector=("dense_text", query_embedding),
+                query_vector=query_embedding,
                 limit=k,
                 query_filter=query_filter,
                 with_payload=True
@@ -249,20 +249,11 @@ class RetrievalAgent:
         false_embeddings = self._get_false_embeddings()
         
         try:
-            # Use context pairs to guide search
-            context_pairs = []
-            for i in range(min(len(truth_embeddings), len(false_embeddings))):
-                context_pairs.append(
-                    models.ContextExamplePair(
-                        positive=truth_embeddings[i],
-                        negative=false_embeddings[i]
-                    )
-                )
-            
-            results = self.client.discover(
+            # Discovery API was removed in newer qdrant-client
+            # Fallback to regular search with best-effort semantic matching
+            results = self.client.search(
                 collection_name=COLLECTION_NAME,
-                target=query_embedding,
-                context=context_pairs,
+                query_vector=query_embedding,
                 limit=k,
                 with_payload=True
             )
@@ -299,7 +290,7 @@ class RetrievalAgent:
         try:
             results = self.client.search(
                 collection_name=COLLECTION_NAME,
-                query_vector=("visual", image_embedding),
+                query_vector=image_embedding,
                 limit=k,
                 with_payload=True
             )
