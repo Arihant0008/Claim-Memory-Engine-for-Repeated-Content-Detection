@@ -210,7 +210,8 @@ class RetrievalAgent:
                 query_vector=query_embedding,
                 limit=k,
                 query_filter=query_filter,
-                with_payload=True
+                with_payload=True,
+                using="dense_text"
             )
             
             if not results:
@@ -255,7 +256,8 @@ class RetrievalAgent:
                 collection_name=COLLECTION_NAME,
                 query_vector=query_embedding,
                 limit=k,
-                with_payload=True
+                with_payload=True,
+                using="dense_text"
             )
             
             if not results:
@@ -292,7 +294,8 @@ class RetrievalAgent:
                 collection_name=COLLECTION_NAME,
                 query_vector=image_embedding,
                 limit=k,
-                with_payload=True
+                with_payload=True,
+                using="visual"
             )
             
             if not results:
