@@ -20,13 +20,6 @@ pmc-opus-anti/
 2. **[backend/README.md](backend/README.md)** - Backend setup & Render deployment
 3. **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture
 
-**For deployment:**
-- **[DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)** - Complete deployment guide
-- **[SPLIT_DEPLOYMENT.md](SPLIT_DEPLOYMENT.md)** - Platform-specific instructions
-
-**For judges/reviewers:**
-- **[JUDGE_SUMMARY.md](JUDGE_SUMMARY.md)** - Executive summary
-
 ---
 
 ## 🎯 Features
@@ -39,8 +32,6 @@ pmc-opus-anti/
 - **System Monitoring**: Real-time backend health checks and status display
 
 ## 🏗️ Architecture
-
-**This project supports SPLIT DEPLOYMENT** - Frontend and backend can be deployed independently to different platforms (e.g., Vercel for frontend, Railway for backend). See [SPLIT_DEPLOYMENT.md](SPLIT_DEPLOYMENT.md) for details.
 
 **Backend:**
 - FastAPI server (port 8000)
@@ -86,8 +77,6 @@ cp .env.example .env.local
 # Edit .env.local: NEXT_PUBLIC_API_URL=http://localhost:8000
 pnpm dev
 ```
-
-Open http://localhost:3000
 
 ### Production Deployment
 
@@ -168,8 +157,6 @@ For deploying frontend and backend to separate platforms:
 3. **Update Backend CORS**
    - Set `CORS_ORIGINS` to your frontend URL
    - Redeploy backend
-
-📖 **Full guide**: [SPLIT_DEPLOYMENT.md](SPLIT_DEPLOYMENT.md)
 
 ## 📁 Project Structure
 
@@ -265,14 +252,6 @@ uvicorn api_server:app --reload  # Start with auto-reload
 - **[backend/README.md](backend/README.md)** - Backend setup & deployment
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture
 
-### Deployment
-- **[DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)** - Complete deployment guide
-- **[SPLIT_DEPLOYMENT.md](SPLIT_DEPLOYMENT.md)** - Platform-specific instructions
-
-### Additional Resources
-- [SETUP.md](SETUP.md) - API key setup
-- [docs/ARCHITECTURE_PROFESSIONAL.md](docs/ARCHITECTURE_PROFESSIONAL.md) - Technical deep dive
-- [docs/THRESHOLDS.md](docs/THRESHOLDS.md) - Parameter justification
 
 ## 📝 License
 
