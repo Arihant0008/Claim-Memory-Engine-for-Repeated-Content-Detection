@@ -9,7 +9,6 @@ pmc-opus-anti/
 ├── frontend/          # Next.js application → Deploy to Vercel
 ├── backend/           # FastAPI server → Deploy to Render
 ├── README.md          # This file
-├── ARCHITECTURE.md    # System design
 └── docs/              # Additional documentation
 ```
 
