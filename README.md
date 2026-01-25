@@ -18,7 +18,6 @@ pmc-opus-anti/
 **New to the project?** Start here:
 1. **[frontend/README.md](frontend/README.md)** - Frontend setup & Vercel deployment
 2. **[backend/README.md](backend/README.md)** - Backend setup & Render deployment
-3. **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture
 
 ---
 
